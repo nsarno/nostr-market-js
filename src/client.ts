@@ -1,7 +1,6 @@
 import "websocket-polyfill"
-import { Relay, relayInit, Filter } from "nostr-tools"
+import { SimplePool, Filter } from "nostr-tools"
 import { bech32 } from "bech32"
-export { Relay } from "nostr-tools"
 
 export function npubToHex(npub: string) : string {
   const { prefix, words } = bech32.decode(npub);
@@ -16,28 +15,13 @@ export function npubToHex(npub: string) : string {
   return pubkey
 }
 
-export async function connectToRelay(r: string) : Promise<Relay> {
-  const relay = relayInit(r)
-
-  // relay.on('connect', () => {
-  //   console.log(`connected to ${relay.url}`)
-  // })
-
-  relay.on('error', () => {
-    console.log(`failed to connect to ${relay.url}`)
-  })
-  
-  await relay.connect()
-
-  return relay
-}
-
-export async function listEvents(relay: Relay, pk: string, options: Filter) {
+export async function listEvents(relays: Array<string>, pk: string, options: Filter) {
+  const pool = new SimplePool()
   const filters = [{
     kinds: [1],
     authors: [pk],
     ...options
   }]
 
-  return await relay.list(filters)
+  return await pool.list(relays, filters)
 }

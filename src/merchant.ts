@@ -1,5 +1,3 @@
-import { Relay } from "nostr-tools"
-
 type Product = {
   id: string,
   name: string,
@@ -26,10 +24,8 @@ type Stall = {
   products: Array<Product>
 }
 
-export function restoreCatalog(pool:)
-
 // pk: merchant's public key
 // returns a list of available products from the merchant
-export function listProducts(relay: Relay, pk: string) : Array<Product> {
+export function listProducts(relays: Array<string>, pk: string) : Array<Product> {
   return []
 }
