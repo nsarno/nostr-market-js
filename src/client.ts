@@ -1,6 +1,8 @@
 import "websocket-polyfill"
+
 import { SimplePool, Filter } from "nostr-tools"
 import { bech32 } from "bech32"
+import { Event } from "nostr-tools"
 
 export function npubToHex(npub: string) : string {
   const { prefix, words } = bech32.decode(npub);
@@ -15,7 +17,7 @@ export function npubToHex(npub: string) : string {
   return pubkey
 }
 
-export async function listEvents(relays: Array<string>, pk: string, options: Filter) {
+export async function listEvents(relays: Array<string>, pk: string, options: Filter = {}) : Promise<Array<Event>> {
   const pool = new SimplePool()
   const filters = [{
     kinds: [1],
