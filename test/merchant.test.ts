@@ -2,9 +2,6 @@ import { npubToHex } from "../src/client"
 import { Merchant, buildMerchant, transform } from "../src/merchant"
 
 describe("Merchant", () => {
-  // const relays = ["wss://relay.damus.io"]
-  const pk = npubToHex("npub1xjfd6s75j63r0azyrlvqrag83d34gtp7zk8la2grevpq5xh5llws9lwuey") // @AK
-
   test("transform", () => {
     let merchant : Merchant = {}
     let event = {
@@ -45,7 +42,7 @@ describe("Merchant", () => {
         id: "",
         sig: "",
         kind: 21,
-        pubkey: pk,
+        pubkey: "pk",
         created_at: Math.floor(Date.now() / 1000),
         tags: [],
         content: `{
