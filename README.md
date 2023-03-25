@@ -12,3 +12,17 @@ The goal of this library is to provide basic tooling for building a Nostr Market
 - [ ] delete inventory
 
 _open to suggestions_ ...
+
+## Usage
+
+Run the test suite
+
+```
+$ npm run test
+```
+
+Compile typescript
+
+```
+$ npm run compile
+```
